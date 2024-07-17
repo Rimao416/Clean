@@ -1,0 +1,33 @@
+.details{
+    display: inline-block;
+    background: white;
+    padding: 3px 10px;
+    border-radius: 150px;
+    color: $black-color;
+    // flex-direction: column;
+   &__background{
+       display: flex;
+       align-items: center;
+   }
+    &__icon{
+        display: inline-block;
+        padding: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 100px;
+        &--gray{
+            background-color: $gray-background-color;
+        }
+        &--green{
+            background-color: $green-color;
+        }
+    }
+
+    &__content{
+        display: inline-block;
+        margin-left: 5px;
+        // font-size: 14px;
+    }
+
+}
