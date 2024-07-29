@@ -2,16 +2,18 @@
 import { useState } from "react";
 import Clean from "../../src/assets/clean.png";
 import Brush from "../../src/assets/brush.png";
+import { RxHamburgerMenu } from "react-icons/rx";
 import Multi from "../../src/assets/multi.png";
 import Wallet from "../../src/assets/wallet.png";
 import Woman from "../../src/assets/home_3.png";
 import Woman_2 from "../../src/assets/home_4.png";
 import Button from "../components/Button";
-import { CiMenuFries } from "react-icons/ci";
 import Details from "../components/Details";
+import { IoClose } from "react-icons/io5";
 import HomeGerms from "../components/HomeGerms";
 function Home() {
   const [active, setActive] = useState(false);
+  const [toogle, setToggle] = useState(false);
   const topPositions = [
     10, 20, 30, 40, 50, 60, 15, 25, 35, 45, 55, 65, 5, 25, 35, 45, 55,
   ];
@@ -49,16 +51,38 @@ function Home() {
             </li>
           ))}
         </ul>
-        <div
-          className={`navigation__wrapper navigation__wrapper--${
-            active ? "active" : "inactive"
-          }`}
-        >
-          <Button content="Voir plus" />
+        <div className="navigation__right">
+          <div
+            className={`navigation__wrapper navigation__wrapper--${
+              active ? "active" : "inactive"
+            }`}
+          >
+            <Button content="Voir plus" />
+          </div>
+          <span className="navigation__icon" onClick={() => setActive(!active)}>
+            <RxHamburgerMenu />
+          </span>
         </div>
-        <span className="navigation__icon" onClick={() => setActive(!active)}>
-          <CiMenuFries />
-        </span>
+        <div className=
+        {`navigation__responsive navigation__responsive--${active ? "active" : "inactive"
+        }`}>
+          <div className="navigation__wrapper">
+            <img src={Clean} alt="" />
+            <span className="navigation__icon" onClick={() => setActive(false)}>
+              <IoClose />
+            </span>
+          </div>
+          <ul
+            className={`navigation__wrapper"
+            }`}
+          >
+            {menuItems.map((item, index) => (
+              <li className="navigation__wrapper--list" key={index}>
+                <a href={item.link}>{item.label}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
       </section>
       <section className="home">
         <div className="home__wrapper">
@@ -103,16 +127,20 @@ function Home() {
           </div>
           <img src={Woman_2} alt="" />
         </div>
-        {/* <div className="home__germs">
-          {Array(17)
-            .fill(0)
-            .map((_, index) => (
-              <span key={index} className="home__germs--content"></span>
-            ))}
-        </div> */}
-        <HomeGerms topPositions={topPositions} leftPositions={leftPositions} axisX={"50%"} axisY={0} />
-        <HomeGerms topPositions={xPositions} leftPositions={yPositions} axisX={"20%"} axisY={"80%"} />
+        <HomeGerms
+          topPositions={topPositions}
+          leftPositions={leftPositions}
+          axisX={"50%"}
+          axisY={0}
+        />
+        <HomeGerms
+          topPositions={xPositions}
+          leftPositions={yPositions}
+          axisX={"20%"}
+          axisY={"80%"}
+        />
       </section>
+      <div className={`overlay overlay--${active ? "active" : ""}`}></div>
     </div>
   );
 }
