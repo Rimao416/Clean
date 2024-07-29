@@ -13,7 +13,6 @@ import { IoClose } from "react-icons/io5";
 import HomeGerms from "../components/HomeGerms";
 function Home() {
   const [active, setActive] = useState(false);
-  const [toogle, setToggle] = useState(false);
   const topPositions = [
     10, 20, 30, 40, 50, 60, 15, 25, 35, 45, 55, 65, 5, 25, 35, 45, 55,
   ];
