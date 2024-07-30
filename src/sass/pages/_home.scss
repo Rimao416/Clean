@@ -405,7 +405,7 @@
   background-color: $gray-background-color;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 70px;
+  padding: 0 70px;
   height: 70vh;
   overflow: hidden;
   &__wrapper {
@@ -414,58 +414,61 @@
       flex-basis: 45%;
       position: relative;
       background-color: green;
-
+      @include respond(tab-port) {
+        display: none;
+      }
     }
-    &:nth-child(2){
+    &:nth-child(2) {
+      position: relative;
       flex-grow: 1;
       padding: 0 5rem;
+      @include respond(tab-port) {
+        padding: 0;
+      }
     }
-    &--image {
 
+    &--image {
       object-fit: cover;
       overflow: hidden;
       border-radius: 50%;
       &:not(:nth-child(3)) {
         width: 150px;
         height: 150px;
-        filter: grayscale(100%) blur(3px);
-        transition: .4s ease;
-        &:hover{
-          filter: grayscale(0) blur(0);
+        filter: grayscale(100%);
+        transition: 0.4s ease;
+        &:hover {
+          filter: grayscale(0);
           width: 200px;
           height: 200px;
         }
-
-
       }
-      &:nth-child(1){
+      &:nth-child(1) {
         position: absolute;
-        top:0;
+        top: 0;
         left: 0;
       }
-      &:nth-child(2){
+      &:nth-child(2) {
         position: absolute;
         top: 0;
         right: 0;
       }
 
-      &:nth-child(3){
+      &:nth-child(3) {
         width: 300px;
-        height:300px;
+        height: 300px;
         position: absolute;
         top: 50%;
         left: 50%;
-        transform: translate(-50%,-50%);
+        transform: translate(-50%, -50%);
         z-index: 150;
         border: 8px solid white;
       }
-      &:nth-child(4){
+      &:nth-child(4) {
         position: absolute;
         bottom: 0;
         left: 0;
-
       }
-      &:nth-child(5){
+      &:nth-child(5) {
         position: absolute;
         bottom: 0;
         right: 0;
@@ -476,9 +479,14 @@
   &__title {
     @include title;
     margin: 20px 0;
+    z-index: 150;
     &--font {
       color: $green-color;
+      z-index: 150;
     }
+  }
+  &__description {
+    font-size: 14px;
   }
   &__number {
     margin-top: 20px;
@@ -494,5 +502,49 @@
       color: $green-color;
       font-weight: 700;
     }
+    &--description {
+      font-size: 14px;
+    }
+  }
+  &__star {
+    z-index: 2;
+    @include respond(tab-port){
+      display: none;
+    }
+   &--small{
+    width: 20px;
+    height: 20px;
+    animation: shine 2s infinite;
+    position: absolute;
+    top:0;
+    right: 0;
+  }
+  &--normal{
+    width: 40px;
+    height: 40px;
+    animation: shine 2s infinite;
+    animation-delay: 1s;
+    position: absolute;
+    top:0;
+    right: 20px;
+   }
+   &--large{
+    width: 45px;
+    height: 45px;
+    animation: shine 2s infinite;
+    animation-delay: 1.5s;
+    position: absolute;
+    top:25px;
+    right: 0;
+   }
+   @keyframes shine {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+  }
+
   }
 }

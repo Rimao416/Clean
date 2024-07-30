@@ -5,10 +5,11 @@ import Brush from "../../src/assets/brush.png";
 import { RxHamburgerMenu } from "react-icons/rx";
 import Multi from "../../src/assets/multi.png";
 import Wallet from "../../src/assets/wallet.png";
-import Star_16 from "../../src/assets/star_16.png";
+
+import Star_8 from "../../src/assets/star_8.png";
 import Woman from "../../src/assets/home_3.png";
 import Woman_2 from "../../src/assets/home_4.png";
-import Woman_5 from "../../src/assets/home_5.png";
+
 import Woman_6 from "../../src/assets/woman_6.jpg";
 import Woman_7 from "../../src/assets/woman_7.jpg";
 import Woman_8 from "../../src/assets/woman_8.jpg";
@@ -192,6 +193,10 @@ function Home() {
   <Trust text="60+" description="Expert en nettoyage"/>
   <Trust text="99%" description="Client Satisfait"/>
 </div>
+<img src={Star_8} alt={Star_8} className="about__star about__star--small" />
+<img src={Star_8} alt={Star_8} className="about__star about__star--normal" />
+<img src={Star_8} alt={Star_8} className="about__star about__star--large" />
+
 </div>
       </section>
       <div className={`overlay overlay--${active ? "active" : ""}`}></div>
