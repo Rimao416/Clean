@@ -1,0 +1,27 @@
+.title {
+  display: flex;
+  align-items: center;
+  &--text {
+    font-size: 14px;
+    font-weight: 500;
+    &--black{
+        color: $black-color;
+    }
+    &--white{
+        color:white;
+    }
+  }
+  
+  &--trait {
+    width: 20px; /* Ajustez la largeur selon vos besoins */
+    height: 3px; /* Ajustez la hauteur selon vos besoins */
+    margin-right: 10px; /* Espacement entre la barre et le texte */
+    &--black {
+      background-color: black;
+    }
+    &--yellow{
+        background-color: $yellow-color;
+    
+    }
+  }
+}

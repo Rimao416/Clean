@@ -20,6 +20,8 @@ import Details from "../components/Details";
 import { IoClose } from "react-icons/io5";
 import HomeGerms from "../components/HomeGerms";
 import Title from "../components/Title";
+import { ProductsData } from "../constants/ProductsData";
+import Products from "../components/Products";
 function Home() {
   const [active, setActive] = useState(false);
   const infiniteText = [
@@ -49,18 +51,18 @@ function Home() {
     { label: "À Propos", link: "#" },
     { label: "Nous contacter", link: "#" },
   ];
-  interface TrustProps{
-    text:string,
-    description:string
+  interface TrustProps {
+    text: string;
+    description: string;
   }
-  const Trust:React.FC<TrustProps>=({text,description})=>{
+  const Trust: React.FC<TrustProps> = ({ text, description }) => {
     return (
       <div className="about__trust">
         <h1 className="about__trust--number">{text}</h1>
         <p className="about__trust--description">{description}</p>
       </div>
-    )
-  }
+    );
+  };
   return (
     <div className="app">
       <section className="navigation">
@@ -175,29 +177,70 @@ function Home() {
         ))}
       </section>
       <section className="about">
-<div className="about__wrapper">
-  <img src={Woman_6} alt={Woman_6}  className="about__wrapper--image"/>
-  <img src={Woman_7} alt={Woman_7}  className="about__wrapper--image"/>
-  <img src={Woman_8} alt={Woman_8}  className="about__wrapper--image"/>
-  <img src={Woman_9} alt={Woman_9}  className="about__wrapper--image"/>
-  <img src={Woman_10} alt={Woman_10}  className="about__wrapper--image"/>
-</div>
-<div className="about__wrapper"><Title title="À Propos" color="black"/>
-<h1 className="about__title"><span className="about__title--font">Votre meilleur choix</span> pour les services de nettoyage</h1>
+        <div className="about__wrapper">
+          <img src={Woman_6} alt={Woman_6} className="about__wrapper--image" />
+          <img src={Woman_7} alt={Woman_7} className="about__wrapper--image" />
+          <img src={Woman_8} alt={Woman_8} className="about__wrapper--image" />
+          <img src={Woman_9} alt={Woman_9} className="about__wrapper--image" />
+          <img
+            src={Woman_10}
+            alt={Woman_10}
+            className="about__wrapper--image"
+          />
+        </div>
+        <div className="about__wrapper">
+          <Title title="À Propos" color="black" traitColor="black" />
+          <h1 className="about__title">
+            <span className="about__title--font">Votre meilleur choix</span>{" "}
+            pour les services de nettoyage
+          </h1>
 
-<p className="about__description">
-  Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum nisi perspiciatis deleniti dolorum aliquid sit? Veniam at reprehenderit dolore nesciunt sequi perferendis eaque natus ipsum sit. Ullam a repellendus quod.
-</p>
-<div className="about__number">
-  <Trust text="6500+" description="Projet Completé"/>
-  <Trust text="60+" description="Expert en nettoyage"/>
-  <Trust text="99%" description="Client Satisfait"/>
-</div>
-<img src={Star_8} alt={Star_8} className="about__star about__star--small" />
-<img src={Star_8} alt={Star_8} className="about__star about__star--normal" />
-<img src={Star_8} alt={Star_8} className="about__star about__star--large" />
-
-</div>
+          <p className="about__description">
+            Choisir nos services de nettoyage, c'est opter pour l'excellence et
+            la tranquillité d'esprit. Nous sommes fiers de proposer une gamme
+            complète de services de nettoyage adaptés à vos besoins, qu'il
+            s'agisse de votre maison, de votre bureau ou de tout autre espace.
+          </p>
+          <div className="about__number">
+            <Trust text="6500+" description="Projet Completé" />
+            <Trust text="60+" description="Expert en nettoyage" />
+            <Trust text="99%" description="Client Satisfait" />
+          </div>
+          <img
+            src={Star_8}
+            alt={Star_8}
+            className="about__star about__star--small"
+          />
+          <img
+            src={Star_8}
+            alt={Star_8}
+            className="about__star about__star--normal"
+          />
+          <img
+            src={Star_8}
+            alt={Star_8}
+            className="about__star about__star--large"
+          />
+        </div>
+      </section>
+      <section className="services">
+        <div className="services__header">
+          <div className="services__header--wrapper">
+            <Title title="Nos Services" color="white" traitColor="yellow" />
+            <h1 className="services__header--title">
+              Découvrez nos
+              <span> services de nettoyage</span>
+            </h1>
+          </div>
+          <div className="services__header--wrapper">
+            <Button content="Voir tous nos services" />
+          </div>
+        </div>
+        <div className="services__body">
+          {ProductsData.map((product) => (
+            <Products key={product.title} {...product} />
+          ))}
+        </div>
       </section>
       <div className={`overlay overlay--${active ? "active" : ""}`}></div>
     </div>
