@@ -5,6 +5,12 @@ import Brush from "../../src/assets/brush.png";
 import { RxHamburgerMenu } from "react-icons/rx";
 import Multi from "../../src/assets/multi.png";
 import Wallet from "../../src/assets/wallet.png";
+import Choose_4 from "../../src/assets/choose_4.jpg";
+import Choose_1 from "../../src/assets/choose_1.jpg";
+import Choose_2 from "../../src/assets/choose_2.jpg";
+import Choose_3 from "../../src/assets/choose_3.jpg";
+import Choose_5 from "../../src/assets/choose_5.jpg";
+// import Choose from "../../src/assets/choose_1.png";
 
 import Star_8 from "../../src/assets/star_8.png";
 import Woman from "../../src/assets/home_3.png";
@@ -22,8 +28,14 @@ import HomeGerms from "../components/HomeGerms";
 import Title from "../components/Title";
 import { ProductsData } from "../constants/ProductsData";
 import Products from "../components/Products";
+import { chooseData } from "../constants/ChooseData";
+import ChooseCard from "../components/Choose";
+import { ProjetsData } from "../constants/ProjetData";
+import Projet from "../components/Projet";
 function Home() {
   const [active, setActive] = useState(false);
+  const [isFading, setIsFading] = useState(false);
+  const [currentImage, setCurrentImage] = useState(Choose_4);
   const infiniteText = [
     "Nettoyage de la maison",
     "Nettoyage de bureaux",
@@ -31,6 +43,7 @@ function Home() {
     "Nettoyage de meubles",
     "Nettoyage des vitres",
   ];
+  const images = [Choose_1, Choose_2, Choose_3, Choose_4, Choose_5];
   const topPositions = [
     10, 20, 30, 40, 50, 60, 15, 25, 35, 45, 55, 65, 5, 25, 35, 45, 55,
   ];
@@ -63,6 +76,22 @@ function Home() {
       </div>
     );
   };
+  const handleMouseEnter = (index: number) => {
+    setIsFading(true);
+    setTimeout(() => {
+      setCurrentImage(images[index]);
+      setIsFading(false);
+    }, 500); // This timeout should match the duration of the CSS transition
+  };
+
+  const handleMouseLeave = () => {
+    setIsFading(true);
+    setTimeout(() => {
+      setCurrentImage(Choose_4);
+      setIsFading(false);
+    }, 500); // This timeout should match the duration of the CSS transition
+  };
+
   return (
     <div className="app">
       <section className="navigation">
@@ -239,6 +268,77 @@ function Home() {
         <div className="services__body">
           {ProductsData.map((product) => (
             <Products key={product.title} {...product} />
+          ))}
+        </div>
+      </section>
+      <section className="choosen">
+        <div className="choosen__header">
+          <div className="choosen__header--wrapper">
+            <Title
+              title="Pourquoi nous choisir"
+              color="black"
+              traitColor="black"
+            />
+            <h1 className="choosen__header--title">
+              Pourquoi choisir
+              <span> nos solutions d'énergie verte</span>
+            </h1>
+          </div>
+          <div className="choosen__header--wrapper">
+            <Button content="Obtenir un devis" />
+          </div>
+        </div>
+        <div className="choosen__body">
+          <div className="choosen__body--wrapper">
+            <img
+              src={currentImage}
+              alt={currentImage}
+              className={`choosen__body--image ${isFading ? "fade-out" : ""}`}
+            />
+            <ul className="choosen__body--navigation">
+              {infiniteText.map((text, index) => (
+                <li
+                  key={index}
+                  className="choosen__body--list"
+                  onMouseEnter={() => handleMouseEnter(index)}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  {text}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="choosen__body--wrapper">
+            {chooseData.map((choose) => (
+              <ChooseCard key={choose.title} {...choose} />
+            ))}
+          </div>
+        </div>
+      </section>
+      <section className="marquee">
+        {infiniteText.map((text) => (
+          <h5 className="marquee--text">{text}</h5>
+        ))}
+      </section>
+      <section className="projets">
+        <div className="projets__header">
+          <div className="projets__header--wrapper">
+            <Title
+              title="Pourquoi nous choisir"
+              color="black"
+              traitColor="black"
+            />
+            <h1 className="projets__header--title">
+              <span>Découvrez notre portefeuille</span> de projets
+            </h1>
+          </div>
+          <div className="projets__header--wrapper">
+            <Button content="Voir tous nos projets" />
+          </div>
+        </div>
+        <div className="projets__body">
+          {ProjetsData.map((project) => (
+            <Projet key={project.title} {...project} />
           ))}
         </div>
       </section>
