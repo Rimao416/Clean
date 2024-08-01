@@ -5,6 +5,10 @@ import Brush from "../../src/assets/brush.png";
 import { RxHamburgerMenu } from "react-icons/rx";
 import Multi from "../../src/assets/multi.png";
 import Wallet from "../../src/assets/wallet.png";
+import List from "../../src/assets/to-do-list.png";
+import Team from "../../src/assets/team.png";
+import Mop from "../../src/assets/mop.png";
+import Happiness from "../../src/assets/happiness.png";
 import Choose_4 from "../../src/assets/choose_4.jpg";
 import Choose_1 from "../../src/assets/choose_1.jpg";
 import Choose_2 from "../../src/assets/choose_2.jpg";
@@ -76,6 +80,35 @@ function Home() {
       </div>
     );
   };
+  interface ProcessPros {
+    icon: string;
+    number: string;
+    title: string;
+    description: string;
+  }
+  const Process: React.FC<ProcessPros> = ({
+    icon,
+    number,
+    title,
+    description,
+  }) => {
+    return (
+      <div className="process__container">
+        <div className="process__container--wrapper">
+
+        <div className="process__container--bullet">
+          <img src={icon} alt={icon} className="process__container--image" />
+          <span className="process__container--number">{number}</span>
+        </div>
+        <div className="process__container--text">
+          <h4 className="process__container--title">{title}</h4>
+          <p className="process__container--title">{description}</p>
+        </div>
+        </div>
+      </div>
+    );
+  };
+
   const handleMouseEnter = (index: number) => {
     setIsFading(true);
     setTimeout(() => {
@@ -340,6 +373,24 @@ function Home() {
           {ProjetsData.map((project) => (
             <Projet key={project.title} {...project} />
           ))}
+        </div>
+      </section>
+      <section className="marquee">
+        {infiniteText.map((text) => (
+          <h5 className="marquee--text">{text}</h5>
+        ))}
+      </section>
+      <section className="process">
+        <div className="process__wrapper">
+          <Process icon={List} number="01" title="Salut" description="salut" />
+          <Process icon={Team} number="02" title="Salut" description="salut" />
+          <Process icon={Mop} number="03" title="Salut" description="salut" />
+          <Process
+            icon={Happiness}
+            number="04"
+            title="Salut"
+            description="salut"
+          />
         </div>
       </section>
       <div className={`overlay overlay--${active ? "active" : ""}`}></div>
