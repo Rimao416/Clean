@@ -19,6 +19,11 @@ import Choose_5 from "../../src/assets/choose_5.jpg";
 import Star_8 from "../../src/assets/star_8.png";
 import Woman from "../../src/assets/home_3.png";
 import Woman_2 from "../../src/assets/home_4.png";
+import Facebook from "../../src/assets/facebook.png";
+import Twitter from "../../src/assets/twitter-sign.png";
+import Instagram from "../../src/assets/instagram.png";
+import Youtube from "../../src/assets/youtube.png";
+import Pinterest from "../../src/assets/pinterest.png";
 
 import Woman_6 from "../../src/assets/woman_6.jpg";
 import Woman_7 from "../../src/assets/woman_7.jpg";
@@ -36,10 +41,19 @@ import { chooseData } from "../constants/ChooseData";
 import ChooseCard from "../components/Choose";
 import { ProjetsData } from "../constants/ProjetData";
 import Projet from "../components/Projet";
+import { TestimonialsData } from "../constants/Testimonials";
+import Testimonials from "../components/Testimonials";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/scrollbar";
+
 function Home() {
   const [active, setActive] = useState(false);
   const [isFading, setIsFading] = useState(false);
   const [currentImage, setCurrentImage] = useState(Choose_4);
+  const socialNewtowk = [Facebook, Twitter, Youtube, Instagram, Pinterest];
   const infiniteText = [
     "Nettoyage de la maison",
     "Nettoyage de bureaux",
@@ -95,15 +109,14 @@ function Home() {
     return (
       <div className="process__container">
         <div className="process__container--wrapper">
-
-        <div className="process__container--bullet">
-          <img src={icon} alt={icon} className="process__container--image" />
-          <span className="process__container--number">{number}</span>
-        </div>
-        <div className="process__container--text">
-          <h4 className="process__container--title">{title}</h4>
-          <p className="process__container--title">{description}</p>
-        </div>
+          <div className="process__container--bullet">
+            <img src={icon} alt={icon} className="process__container--image" />
+            <span className="process__container--number">{number}</span>
+          </div>
+          <div className="process__container--text">
+            <h4 className="process__container--title">{title}</h4>
+            <p className="process__container--description">{description}</p>
+          </div>
         </div>
       </div>
     );
@@ -382,17 +395,194 @@ function Home() {
       </section>
       <section className="process">
         <div className="process__wrapper">
-          <Process icon={List} number="01" title="Salut" description="salut" />
-          <Process icon={Team} number="02" title="Salut" description="salut" />
-          <Process icon={Mop} number="03" title="Salut" description="salut" />
+          <Process
+            icon={List}
+            number="01"
+            title="Réserver un service"
+            description="Réserver un service de nettoyage avec nous est simple et rapide."
+          />
+          {/* <div className="process__separator"></div> */}
+          <Process
+            icon={Team}
+            number="02"
+            title="L'équipe arrive"
+            description="Lorsque vous réservez un service avec nous, vous pouvez être sûr que notre équipe arrivera à l'heure convenue"
+          />
+          {/* <div className="process__separator"></div> */}
+          <Process
+            icon={Mop}
+            number="03"
+            title="Processus de nettoyage"
+            description="Notre processus de nettoyage est conçu pour garantir des résultats exceptionnels à chaque intervention."
+          />
+          {/* <div className="process__separator"></div> */}
           <Process
             icon={Happiness}
             number="04"
-            title="Salut"
-            description="salut"
+            title="Résultat final"
+            description="Notre processus de nettoyage est conçu pour garantir des résultats exceptionnels à chaque intervention."
           />
         </div>
       </section>
+      <section className="book">
+        <div className="book__wrapper">
+          <h1 className="book__wrapper--title">
+            <span>Services de livres à prix abordable :</span> Gagnez du temps
+            et de l'argent avec nous !
+          </h1>
+        </div>
+        <div className="book__wrapper">
+          <Button content="Réserver un service" />
+        </div>
+      </section>
+      <section className="contact">
+        <div className="contact__wrapper">
+          <Title title="Nous contacter" color="black" traitColor="green" />
+          <h1 className="contact__title">
+            Obtenez
+            <span> un devis gratuit </span>dès aujourd'hui !
+          </h1>
+          <div className="contact__form">
+            <div className="contact__form--wrapper">
+              <label htmlFor="">Votre nom *</label>
+              <input type="text" placeholder="Entrez votre nom" />
+            </div>
+            <div className="contact__form--wrapper">
+              <label htmlFor="">Email *</label>
+              <input type="text" placeholder="azertyuiop@gmail.com" />
+            </div>
+            <div className="contact__form--wrapper">
+              <label htmlFor="">Phone *</label>
+              <input type="text" placeholder="+243658965236" />
+            </div>
+            <div className="contact__form--wrapper">
+              <label htmlFor="">Service *</label>
+              <select name="" id="">
+                {infiniteText.map((text) => (
+                  <option value="">{text}</option>
+                ))}
+              </select>
+            </div>
+            <div className="contact__form--wrapper">
+              <label htmlFor="">Votre message</label>
+              <textarea name="" id="" rows={10}></textarea>
+            </div>
+          </div>
+          <div style={{ marginTop: "10px" }}>
+            <Button content="Envoyer" />
+          </div>
+        </div>
+        <div className="contact__wrapper">
+          <div className="contact__container">
+            <h5>Adresses</h5>
+            <p>4517 Washington Ave</p>
+            <p>Manchester, Kentucky</p>
+          </div>
+          <div className="contact__container">
+            <h5>Contact</h5>
+            <p>Phone: +21656609671</p>
+            <p>Email: omarkayumba12345@gmail.com</p>
+          </div>
+          <div className="contact__container">
+            <h5>Temps Ouvert</h5>
+            <p>Lundi - Vendredi : 10:00 - 20:00</p>
+            <p>Samedi - Dimanche : 11:00 - 18:00</p>
+          </div>
+          <div className="contact__container">
+            <h5>Restez connecté</h5>
+            <div className="contact__container--social">
+              {socialNewtowk.map((reseau) => (
+                <img src={reseau} alt="" className="contact__network" />
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="marquee">
+        {infiniteText.map((text) => (
+          <h5 className="marquee--text">{text}</h5>
+        ))}
+      </section>
+      <section className="testimonials">
+        <div className="testimonials__header">
+          <Title title="Témoignages" color="black" traitColor="green" />
+          <h1 className="testimonials__title">
+            Ce que nos <span>clients disent</span>{" "}
+          </h1>
+        </div>
+        <div className="testimonials__body">
+          <Swiper
+            // onSwiper={(swiper) => {
+            //   swiperRef.current = swiper;
+            // }}
+            slidesPerView={3}
+            breakpoints={{
+              // when window width is >= 320px (typical phone)
+              320: {
+                slidesPerView: 1
+              },
+              // when window width is >= 640px (typical tablet)
+              640: {
+                slidesPerView: 1
+              },
+              // when window width is >= 1024px (typical desktop)
+              1024: {
+                slidesPerView: 3
+              }
+            }}
+            spaceBetween={20}
+            autoplay={true}
+            loop={true}
+            pagination={{
+              clickable: true,
+            }}
+            // navigation={true}
+            modules={[Navigation]}
+            className="mySwiper"
+          >
+            {TestimonialsData.map((testimonial) => (
+              <SwiperSlide>
+                <Testimonials key={testimonial.fullName} {...testimonial} />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+      </section>
+      <section className="footer">
+  <div className="footer__container">
+    <div className="footer__about">
+      <h3>À propos de nous</h3>
+      <p>Nous sommes une entreprise de nettoyage dédiée à offrir les meilleurs services à nos clients.</p>
+    </div>
+    <div className="footer__links">
+      <h3>Liens utiles</h3>
+      <ul>
+        <li><a href="/home">Accueil</a></li>
+        <li><a href="/services">Services</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <li><a href="/about">À propos</a></li>
+      </ul>
+    </div>
+    <div className="footer__contact">
+      <h3>Contactez-nous</h3>
+      <p>Email: contact@entreprisenettoyage.com</p>
+      <p>Téléphone: +123 456 7890</p>
+      <p>Adresse: 123 Rue de la Propreté, Ville, Pays</p>
+    </div>
+    <div className="footer__social">
+      <h3>Suivez-nous</h3>
+      <div className="footer__social-icons">
+        <a href="#"><img src={Facebook} alt="Facebook" /></a>
+        <a href="#"><img src={Twitter} alt="Twitter" /></a>
+        <a href="#"><img src={Instagram} alt="Instagram" /></a>
+      </div>
+    </div>
+  </div>
+  <div className="footer__bottom">
+    <p>&copy; 2024 Entreprise de Nettoyage. Tous droits réservés.</p>
+  </div>
+</section>
+
       <div className={`overlay overlay--${active ? "active" : ""}`}></div>
     </div>
   );
