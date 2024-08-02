@@ -197,10 +197,7 @@ function Home() {
             color="gray"
             icon={Brush}
           />
-          {/* <div className="home__header">
-            <img src={Brush} alt="" />
-            <p>La meilleure solution de nettoyage</p>ùùùùùùùùùùùùùù
-          </div> */}
+      
           <h1 className="home__title">
             Fournisseur de services de nettoyage{" "}
             <span className="home__title--secondary">Professionnels</span>
