@@ -1393,24 +1393,24 @@
     margin-top: 20px;
   }
 }
-.faq{
+.faq {
   background-color: $gray-background-color;
-  &__accordeon{
+  &__accordeon {
     font-size: 14px;
     // padding: 2rem;
     padding: 20px;
-  background-color: white;   
-    &.open{
+    background-color: white;
+    &.open {
       background-color: $green-color !important;
     }
-  
+
     &:not(:last-child) {
       // border-bottom: 1px solid gray;
       margin-bottom: 20px;
     }
-    h1{
+    h1 {
       font-size: 20px;
-      @include respond(tab-port){
+      @include respond(tab-port) {
         font-size: 16px;
       }
     }
@@ -1426,7 +1426,7 @@
       span {
         font-size: 15px;
       }
-      &.open{
+      &.open {
         color: white !important;
       }
     }
@@ -1435,8 +1435,7 @@
       overflow: hidden;
       transition: all 1s cubic-bezier(0, 1, 0, 1); /* Transition sur la propriété max-height */
       font-size: 14px;
-      @include respond(tab-port){
-
+      @include respond(tab-port) {
         font-size: 12px;
       }
       &.open {
@@ -1447,8 +1446,84 @@
     }
   }
 }
+.newsletter {
+  padding: 70px 70px;
+
+  background-color: white;
+  @include respond(tab-port) {
+    padding: 40px 40px;
+  }
+  &__header {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    text-align: center;
+  }
+  &__title {
+    @include title;
+    width: 50%;
+    @include respond(tab-port) {
+      width: 80%;
+    }
+    span {
+      color: $green-color;
+    }
+  }
+  &__body {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    @include respond(tab-port) {
+      flex-direction: column;
+    }
+    // background-color: $gray-background-color;
+    // padding: 40px 40px;
+    // @include respond(tab-port) {
+      //   padding: 20px 20px;
+      // }
+    }
+    
+    &__wrapper {
+    border:1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    width: 30%;
+    @include respond(tab-port) {
+      width: 80%;
+    }
+  }
+  &__icon {
+    background-color: $green-color;
+    color: white;
+    padding: 5px;
+    svg {
+      height: 20px;
+      width: 20px;
+    }
+  }
+  input{
+    border: none;
+    outline: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    @include respond(tab-port) {
+      font-size: 12px;
+    }
+
+  }
+
+}
+
 .footer {
-  background-color: #383838;
+  // background-color: #383838;
+
+  background-color: $green-color;
   color: #fff;
   padding: 50px 0;
   text-align: center;

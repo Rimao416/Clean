@@ -3,6 +3,7 @@ import { useState } from "react";
 import Clean from "../../src/assets/clean.png";
 import { MdArrowOutward } from "react-icons/md";
 import Brush from "../../src/assets/brush.png";
+import { MdEmail } from "react-icons/md";
 import { IoMdCheckmark } from "react-icons/io";
 import { RxHamburgerMenu } from "react-icons/rx";
 import Multi from "../../src/assets/multi.png";
@@ -700,6 +701,26 @@ function Home() {
               </p>
             </div>
           ))}
+        </div>
+      </div>
+      <section className="marquee">
+        {infiniteText.map((text) => (
+          <h5 className="marquee--text">{text}</h5>
+        ))}
+      </section>
+      <div className="newsletter">
+      <div className="newsletter__header">
+          <Title title="Newsletters" color="black" traitColor="green" />
+          <h1 className="newsletter__title">
+          Restez informé de <span>nos conseils et offres en matière de nettoyage ! </span>
+          </h1>
+        </div>
+        <div className="newsletter__body">
+          <div className="newsletter__wrapper">
+
+          <input type="text" placeholder="Entrez votre adresse" />
+          </div>
+          <Button content="S'abonner"/>
         </div>
       </div>
       <section className="footer">
