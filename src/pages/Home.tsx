@@ -3,7 +3,6 @@ import { useState } from "react";
 import Clean from "../../src/assets/clean.png";
 import { MdArrowOutward } from "react-icons/md";
 import Brush from "../../src/assets/brush.png";
-import { MdEmail } from "react-icons/md";
 import { IoMdCheckmark } from "react-icons/io";
 import { RxHamburgerMenu } from "react-icons/rx";
 import Multi from "../../src/assets/multi.png";
