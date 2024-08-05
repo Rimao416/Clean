@@ -1,7 +1,9 @@
 // import React from 'react'
 import { useState } from "react";
 import Clean from "../../src/assets/clean.png";
+import { MdArrowOutward } from "react-icons/md";
 import Brush from "../../src/assets/brush.png";
+import { IoMdCheckmark } from "react-icons/io";
 import { RxHamburgerMenu } from "react-icons/rx";
 import Multi from "../../src/assets/multi.png";
 import Wallet from "../../src/assets/wallet.png";
@@ -48,6 +50,9 @@ import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/scrollbar";
+import { pricingData } from "../constants/Pricing";
+import { blogs } from "../constants/Blogs";
+import { FaqData } from "../constants/FaqData";
 
 function Home() {
   const [active, setActive] = useState(false);
@@ -74,6 +79,16 @@ function Home() {
   const yPositions = [
     60, 80, 40, 90, 70, 30, 110, 100, 130, 50, 120, 140, 150, 160, 70, 80, 10,
   ];
+  const [open, setOpen] = useState<number | null>(null);
+  const Toggle = (i: number) => {
+    // setActive(!active);
+    console.log(`Toggle clicked for question index: ${i}`);
+    if (open === i) {
+      setOpen(null);
+    } else {
+      setOpen(i);
+    }
+  };
   const menuItems = [
     { label: "Accueil", link: "#" },
     { label: "Services", link: "#" },
@@ -197,7 +212,7 @@ function Home() {
             color="gray"
             icon={Brush}
           />
-      
+
           <h1 className="home__title">
             Fournisseur de services de nettoyage{" "}
             <span className="home__title--secondary">Professionnels</span>
@@ -516,16 +531,16 @@ function Home() {
             breakpoints={{
               // when window width is >= 320px (typical phone)
               320: {
-                slidesPerView: 1
+                slidesPerView: 1,
               },
               // when window width is >= 640px (typical tablet)
               640: {
-                slidesPerView: 1
+                slidesPerView: 1,
               },
               // when window width is >= 1024px (typical desktop)
               1024: {
-                slidesPerView: 3
-              }
+                slidesPerView: 3,
+              },
             }}
             spaceBetween={20}
             autoplay={true}
@@ -545,40 +560,199 @@ function Home() {
           </Swiper>
         </div>
       </section>
-      <section className="footer">
-  <div className="footer__container">
-    <div className="footer__about">
-      <h3>À propos de nous</h3>
-      <p>Nous sommes une entreprise de nettoyage dédiée à offrir les meilleurs services à nos clients.</p>
-    </div>
-    <div className="footer__links">
-      <h3>Liens utiles</h3>
-      <ul>
-        <li><a href="/home">Accueil</a></li>
-        <li><a href="/services">Services</a></li>
-        <li><a href="/contact">Contact</a></li>
-        <li><a href="/about">À propos</a></li>
-      </ul>
-    </div>
-    <div className="footer__contact">
-      <h3>Contactez-nous</h3>
-      <p>Email: contact@entreprisenettoyage.com</p>
-      <p>Téléphone: +123 456 7890</p>
-      <p>Adresse: 123 Rue de la Propreté, Ville, Pays</p>
-    </div>
-    <div className="footer__social">
-      <h3>Suivez-nous</h3>
-      <div className="footer__social-icons">
-        <a href="#"><img src={Facebook} alt="Facebook" /></a>
-        <a href="#"><img src={Twitter} alt="Twitter" /></a>
-        <a href="#"><img src={Instagram} alt="Instagram" /></a>
+      <section className="marquee">
+        {infiniteText.map((text) => (
+          <h5 className="marquee--text">{text}</h5>
+        ))}
+      </section>
+      <section className="team">
+        <div className="team__header">
+          <Title title="Notre ecurie" color="black" traitColor="green" />
+          <h1 className="team__title">
+            Rencontrez notre <span>équipe professionnnelle</span>
+          </h1>
+        </div>
+        <div className="team__body">
+          {TestimonialsData.slice(3, 6).map((member) => (
+            <div className="team__member" key={member.fullName}>
+              <div className="team__wrapper">
+                <img
+                  src={member.image}
+                  alt={"Image de " + member.fullName}
+                  className="team__image"
+                />
+                <div className="team__social">
+                  {socialNewtowk.map((social) => (
+                    <img src={social} alt={social} />
+                  ))}
+                </div>
+              </div>
+              <div className="team__text">
+                <p>{member.fullName}</p>
+                <p>[{member.role}]</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+      <section className="pricing">
+        <div className="pricing__header">
+          <Title title="Tableau des prix" color="black" traitColor="green" />
+          <h1 className="pricing__title">
+            <span>Notre modèle </span>de tarification
+          </h1>
+        </div>
+        <div className="pricing__body">
+          {/* <div className="pricing__wrapper"></div> */}
+          {pricingData.map((pricing) => (
+            <div
+              className={
+                !pricing.isStandard
+                  ? "pricing__card"
+                  : "pricing__card pricing__card--active"
+              }
+              key={pricing.title}
+            >
+              <h5>{pricing.title}</h5>
+              <h1>
+                {pricing.price}
+                <span> /service</span>
+              </h1>
+              <div className="pricing__card--list">
+                {pricing.description.map((description) => (
+                  <div className="pricing__card--description">
+                    <span className={pricing.isStandard ? "standard" : ""}>
+                      <IoMdCheckmark />
+                    </span>
+                    <p>{description}</p>
+                  </div>
+                ))}
+              </div>
+              <button
+                className={`${
+                  pricing.isStandard
+                    ? "pricing__card--button active"
+                    : "pricing__card--button"
+                }`}
+              >
+                Commencer
+              </button>
+            </div>
+          ))}
+        </div>
+      </section>
+      <section className="blog">
+        <div className="blog__header">
+          <div className="blog__header--wrapper">
+            <Title
+              title="Pourquoi nous choisir"
+              color="black"
+              traitColor="black"
+            />
+            <h1 className="blog__header--title">
+              <span>Nos dernières</span> nouvelles et nos derniers blogs
+            </h1>
+          </div>
+          <div className="blog__header--wrapper">
+            <Button content="Voir tous les blogs" />
+          </div>
+        </div>
+        <div className="blog__body">
+          {blogs.map((blog) => (
+            <div className="blog__card" key={blog.title}>
+              <div className="blog__wrapper">
+                <img src={blog.image} alt={blog.image} />
+                <span className="blog__date">{blog.date}</span>
+              </div>
+              <div className="blog__text">
+                <h3>{blog.title}</h3>
+                <p>{blog.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="marquee">
+        {infiniteText.map((text) => (
+          <h5 className="marquee--text">{text}</h5>
+        ))}
+      </section>
+      <div className="faq">
+        <div className="faq__header">
+          <Title title="Faqs" color="black" traitColor="green" />
+          <h1 className="faq__title">
+            Question ? <span>Regardez ici</span>
+          </h1>
+        </div>
+        <div className="faq__body">
+          {FaqData.map((faq, index) => (
+            <div
+            onClick={() => Toggle(index)} // Utilisez une fonction fléchée pour appeler Toggle
+            className={`faq__accordeon ${open===index ? "open" : ""}`}
+            >
+              <div className={`faq__accordeon--title ${open===index ? "open" : ""}`}>
+                <h1>{faq.question}</h1>
+                <span>{<MdArrowOutward />}</span>
+              </div>
+              <p className={`faq__accordeon--text ${open===index ? "open" : ""}`}>
+                {faq.answer}
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
-  </div>
-  <div className="footer__bottom">
-    <p>&copy; 2024 Entreprise de Nettoyage. Tous droits réservés.</p>
-  </div>
-</section>
+      <section className="footer">
+        <div className="footer__container">
+          <div className="footer__about">
+            <h3>À propos de nous</h3>
+            <p>
+              Nous sommes une entreprise de nettoyage dédiée à offrir les
+              meilleurs services à nos clients.
+            </p>
+          </div>
+          <div className="footer__links">
+            <h3>Liens utiles</h3>
+            <ul>
+              <li>
+                <a href="/home">Accueil</a>
+              </li>
+              <li>
+                <a href="/services">Services</a>
+              </li>
+              <li>
+                <a href="/contact">Contact</a>
+              </li>
+              <li>
+                <a href="/about">À propos</a>
+              </li>
+            </ul>
+          </div>
+          <div className="footer__contact">
+            <h3>Contactez-nous</h3>
+            <p>Email: contact@entreprisenettoyage.com</p>
+            <p>Téléphone: +123 456 7890</p>
+            <p>Adresse: 123 Rue de la Propreté, Ville, Pays</p>
+          </div>
+          <div className="footer__social">
+            <h3>Suivez-nous</h3>
+            <div className="footer__social-icons">
+              <a href="#">
+                <img src={Facebook} alt="Facebook" />
+              </a>
+              <a href="#">
+                <img src={Twitter} alt="Twitter" />
+              </a>
+              <a href="#">
+                <img src={Instagram} alt="Instagram" />
+              </a>
+            </div>
+          </div>
+        </div>
+        <div className="footer__bottom">
+          <p>&copy; 2024 Entreprise de Nettoyage. Tous droits réservés.</p>
+        </div>
+      </section>
 
       <div className={`overlay overlay--${active ? "active" : ""}`}></div>
     </div>
